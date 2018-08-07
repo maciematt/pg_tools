@@ -21,23 +21,9 @@ import db.settings as settings
 
 
 """
-For now this is a set of tools with a very simple structure; all that needs to be done
-is that settings need to be located in such a location that the import above will work.
-Then, one can simply import pg_tools wherever they may need, and create a session via:
-
-```
-  engine = pg_tools.db_connect()
-  Base = pg_tools.Base.
-  Base.metadata.bind = engine
-  DBSession = pg_tools.sessionmaker(bind = engine)
-  session = DBSession()
-```
-
-Then you import models, and Base should be visible to all table classes, so ... hold on
-New idea - just import pg_tools in models via `from pg_tools import *`. Then in the main
-script just import models as before, and do everything like before. I'll have to check
+In your models script import pg_tools in models via `from pg_tools import *`. Then in the
+main script just import models as before, and do everything like before. I'll have to check
 this out.
-
 """
 
 
