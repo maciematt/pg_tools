@@ -1,0 +1,8 @@
+**/*.pyc
+**/*.swp
+**/__pycache__
+*~
+*.Rhistory
+*.egg-info
+**/*flycheck*
+*.DS_Store
