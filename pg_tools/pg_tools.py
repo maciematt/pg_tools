@@ -50,7 +50,7 @@ models.
 
 
 if 'password' in settings.DATABASE.keys():
-    settings.DATABASE['password'] = b64decode(settings.DATABASE['password'])#.decode('utf-8')
+    settings.DATABASE['password'] = b64decode(settings.DATABASE['password']).decode('utf-8')
 
 
 Base = declarative_base()
