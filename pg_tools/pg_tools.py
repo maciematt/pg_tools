@@ -21,7 +21,7 @@ import db.settings as settings
 
 
 """
-In your models script import pg_tools in models via `from pg_tools import *`. Then in the
+In your models script import pg_tools in models via `from pg_tools.pg_tools import *`. Then in the
 main script just import models as before, and do everything like before, i.e. make sure to
 run (in this case the assumption is that models.py is in ./db/):
 
@@ -48,9 +48,12 @@ models.
 
 
 
-settings.DATABASE['password'] = b64decode(settings.DATABASE['password']).decode('utf-8')
-Base = declarative_base()
 
+if 'password' in settings.DATABASE.keys():
+    settings.DATABASE['password'] = b64decode(settings.DATABASE['password'])#.decode('utf-8')
+
+
+Base = declarative_base()
 
 
 
