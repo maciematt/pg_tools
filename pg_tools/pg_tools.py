@@ -110,7 +110,13 @@ def bulk_insert_rows(rows, table, kwargs = None):
     if not kwargs:
         kwargs = {}
 
-    with psycopg2.connect("host=%s port=%s dbname=%s user=%s password=%s" % (settings.DATABASE['host'], settings.DATABASE['port'], settings.DATABASE['database'], settings.DATABASE['username'], settings.DATABASE['password'])) as conn:
+
+    conn_line = "host=%s port=%s dbname=%s user=%s" % (settings.DATABASE['host'], settings.DATABASE['port'], settings.DATABASE['database'], settings.DATABASE['username'])
+    if 'password' in settings.DATABASE.keys():
+        conn_line += " password=%s" % settings.DATABASE['password']
+
+
+    with psycopg2.connect(conn_line) as conn:
         with conn.cursor() as cur:
             cur.execute("SET client_encoding TO 'latin1'")
             data_io = StringIO()
