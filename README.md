@@ -1,8 +1,16 @@
 # pg_tools
 
-Common tools and methods used with SQLAlchemy/postgres
+Common tools and methods used with SQLAlchemy/postgres.
 
-In your models script import pg_tools in models via `from pg_tools import *`. Then in the main script just import models as before, and do everything like before, i.e. make sure to run (in this case the assumption is that models.py is in ./db/):
+## Installation
+
+Install directly from github via pip:
+
+`pip install git+https://github.com/pharmhax/pg_tools`
+
+## Usage
+
+In your models script import `pg_tools` in models via `from pg_tools import *`. Then in the main script just import models and do everything as before, i.e. make sure to run (in this case the assumption is that models.py is in `./db/`):
 
 ```
 import db.models as models
