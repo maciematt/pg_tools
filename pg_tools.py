@@ -21,25 +21,28 @@ import db.settings as settings
 
 
 """
-In your models script import pg_tools in models via `from pg_tools.pg_tools import *`. Then in the
-main script just import models as before, and do everything like before, i.e. make sure to
-run (in this case the assumption is that models.py is in ./db/):
+Here we're assuming that a familiar structure where the script that uses pg_tools is in a location
+that has access to db/models.py is assumed. Here's more or less what one would typically do with
+pg_tools:
 
 ```
 import db.models as models
+import pg_tools
 
-engine = models.db_connect()
+engine = pg_tools.db_connect() ## Here pg_tools assumes it'll find all db settings in db.settings.
 models.Base.metadata.bind = engine
-DBSession = models.sessionmaker(bind = engine)
+DBSession = pg_tools.sessionmaker(bind = engine)
 session = DBSession()
 ```
+
+So, as indicated above, inside models a declarative base needs to be declared and named Base.
 
 Then optionally you can run something like:
 
 ```
-models.create_database()
-models.create_schema('human_disease_transcriptomics')
-models.create_tables(engine)
+pg_tools.create_database()
+pg_tools.create_schema('human_disease_transcriptomics')
+pg_tools.create_tables(models.Base, engine)
 ```
 
 that's if you need to create the database, create the schema, and create all the tables from
@@ -87,8 +90,8 @@ def create_schema(schema_name):
 
 
 
-def create_tables(engine):
-    Base.metadata.create_all(engine)
+def create_tables(models_base, engine):
+    models_base.metadata.create_all(engine)
 
 
 
